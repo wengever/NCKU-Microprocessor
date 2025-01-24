@@ -1,0 +1,72 @@
+List p=18f4520 ;???PIC18F4520
+    ;???PIC18F
+    #include<p18f4520.inc>
+        CONFIG OSC = INTIO67
+        CONFIG WDT = OFF
+        org 0x00 ; ???0x00???????
+	
+	MOVLW 0x77
+	MOVWF 0x00
+	MOVLW 0x77
+	MOVWF 0x01 ; first number
+	
+	MOVLW 0x56
+	MOVFF WREG,0x10
+	MOVLW 0x78
+	MOVFF WREG,0x11 ; second number
+	
+	CLRF 0x20
+	CLRF 0x21
+	CLRF 0x22
+	CLRF 0x23 ; clear memory
+	
+	MOVFF 0x11,WREG
+	MULWF 0x01 ; [0x11]*[0x01]
+	MOVFF PRODL,WREG
+	ADDWF 0x23,f ; [0x23] = [0x23] + PRODL
+	MOVFF PRODH, WREG
+	ADDWF 0x22,f ; [0x22] = [0x22] + PRODH
+	
+	MOVFF 0x11,WREG
+	MULWF 0x00 ; [0x11]*[0x00]
+	MOVFF PRODL,WREG
+	ADDWF 0x22,f ; [0x22] = [0x22] + PRODL
+	BTFSC STATUS, C
+	INCF 0x21 ; overflow,[0x21]++
+	BCF STATUS,C
+	MOVFF PRODH,WREG
+	ADDWF 0x21,f ; [0x21] = [0x21] + PRODH
+	BTFSC STATUS, C
+	INCF 0x20 ; overflow,[0x20]++
+	BCF STATUS,C
+	
+	MOVFF 0x10, WREG
+	MULWF 0x01 ; [0x10]*[0x01]
+	MOVFF PRODL, WREG
+	ADDWF 0x22, f ; [0x22] = [0x22] + PRODL
+	BTFSC STATUS, C
+	INCF 0x21 ; overflow,[0x21]++
+	BCF STATUS,C
+	MOVFF PRODH, WREG
+	ADDWF 0x21, f ; [0x21] = [0x21] + PRODH
+	BTFSC STATUS, C
+	INCF 0x20 ; overflow,[0x20]++
+	BCF STATUS,C
+
+	MOVFF 0x10, WREG
+	MULWF 0x00 ; [0x10]*[0x00]
+	MOVFF PRODL, WREG
+	ADDWF 0x21, f ; [0x21] = [0x21] + PRODL
+	BTFSC STATUS, C
+	INCF 0x20 ; overflow,[0x20]++
+	BCF STATUS,C
+	MOVFF PRODH, WREG
+	ADDWF 0x20, f ; [0x20] = [0x20] + PRODH
+	
+	end
+	
+	
+
+
+
+
