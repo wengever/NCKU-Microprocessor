@@ -1,6 +1,6 @@
 # Microcontroller Lab Series  
-
-This repository contains a series of hands-on labs focused on programming microcontrollers using assembly and C within **MPLAB X IDE**. The labs cover fundamental to advanced topics, including instruction sets, addressing modes, bitwise operations, interrupts, UART communication, and motor control.  
+This is the Homework record for the 2024 Microprocessor Principles and Applications course at National Cheng Kung University.
+The repository contains a series of hands-on labs focused on programming microcontrollers using assembly and C within **MPLAB X IDE**. The labs cover fundamental to advanced topics, including instruction sets, addressing modes, bitwise operations, interrupts, UART communication, and motor control.  
 
 ---
 
