@@ -1,7 +1,6 @@
 # Microcontroller Lab Series  
 
 This is the Homework record for the 2024 Microprocessor Principles and Applications course at National Cheng Kung University.  
-
 The repository contains a series of hands-on labs focused on programming microcontrollers using assembly and C within **MPLAB X IDE**.  
 
 The labs cover fundamental to advanced topics, including:  
